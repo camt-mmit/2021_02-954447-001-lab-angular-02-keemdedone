@@ -1,0 +1,14 @@
+.cmp-inputs-container{
+  display: grid;
+  grid-template-columns: 0fr 0.25fr 0fr;
+  row-gap: 0.5em;
+
+  &>b{
+    white-space: nowrap;
+  }
+
+  &>b::after{
+    content:'::';
+    color: blue;
+  }
+}

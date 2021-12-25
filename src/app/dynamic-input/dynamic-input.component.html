@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <ng-template #tmpInput>
+    <ng-container *ngFor="let num of inputs; let i = index" #inputContainer>
+      <div class="cmp-inputs-container">
+        <b class="cl-number">Number {{ i+1 }} </b>
+        <input
+          #elem
+          type="number"
+          [value]="num.value"
+          (change)="onChange(i,elem.valueAsNumber)"/>
+        <button type="button" (click)="deleteInput(i)" [disabled]="inputs.length <= 1" >Delete</button>
+      </div>
+    </ng-container>
+    Result <output>{{ getResult() }}</output>
+  </ng-template>
+
+  <ng-template #tmpSection>
+    <ng-container *ngFor="let input of sections; let j = index">
+      <p>
+        <button type="button" (click)="addInput()">Input</button>
+        <b> Section {{ j }} </b>
+        <button type="button" (click)="deleteSection(j)" [disabled]="sections.length <= 1">Delete</button>
+      </p>
+      <div *ngIf="tmpInput; then tmpInput"></div>
+    </ng-container>
+  </ng-template>
+
+  <ng-container #tmpMain>
+    <button type="button" (click)="addSection()">Section</button><br>
+    <div *ngIf="tmpSection; then tmpSection"></div>
+  </ng-container>
+
+</body>
+</html>

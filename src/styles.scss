@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+html
+{
+  font-family: sans-serif;
+}
+
+input[type="number"],
+.cl-number{
+  font-family: monospace;
+  font-size: 1.1em;
+  text-align: right;
+}
