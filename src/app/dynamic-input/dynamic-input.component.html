@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+
   <ng-template #tmpInput>
     <ng-container *ngFor="let num of inputs; let i = index" #inputContainer>
       <div class="cmp-inputs-container">
@@ -25,17 +26,17 @@
     <ng-container *ngFor="let input of sections; let j = index">
       <p>
         <button type="button" (click)="addInput()">Input</button>
-        <b> Section {{ j }} </b>
+        <b> Section {{ j+1 }} </b>
         <button type="button" (click)="deleteSection(j)" [disabled]="sections.length <= 1">Delete</button>
       </p>
       <div *ngIf="tmpInput; then tmpInput"></div>
     </ng-container>
   </ng-template>
 
-  <ng-container #tmpMain>
-    <button type="button" (click)="addSection()">Section</button><br>
-    <div *ngIf="tmpSection; then tmpSection"></div>
-  </ng-container>
+    <ng-container>
+      <button type="button" (click)="addSection()">Section</button><br>
+      <div *ngIf="tmpSection; then tmpSection"></div>
+    </ng-container>
 
 </body>
 </html>
