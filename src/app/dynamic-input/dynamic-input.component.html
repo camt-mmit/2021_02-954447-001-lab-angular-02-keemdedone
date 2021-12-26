@@ -8,35 +8,51 @@
 <body>
 
   <ng-template #tmpInput>
-    <ng-container *ngFor="let num of inputs; let i = index" #inputContainer>
-      <div class="cmp-inputs-container">
-        <b class="cl-number">Number {{ i+1 }} </b>
-        <input
-          #elem
-          type="number"
-          [value]="num.value"
-          (change)="onChange(i,elem.valueAsNumber)"/>
-        <button type="button" (click)="deleteInput(i)" [disabled]="inputs.length <= 1" >Delete</button>
+    <button type="button" (click)="addSection()">Section</button><br>
+      <div *ngFor="let input of sections; let j = index">
+      <button type="button" (click)="addInput()">Input</button>
+      <b> Section {{ j+1 }} </b>
+      <button type="button" (click)="deleteSection(j)" [disabled]="sections.length <= 1">Delete</button>
+        <div *ngFor="let num of inputs; let i = index" #inputContainer>
+          <div class="cmp-inputs-container">
+            <b class="cl-number">Number {{ i+1 }} </b>
+            <input
+              #elem
+              type="number"
+              [value]="num.value"
+              (change)="onChange(i,elem.valueAsNumber)"/>
+            <button type="button" (click)="deleteInput(i)" [disabled]="inputs.length <= 1" >Delete</button>
+          </div>
+        </div>
+        Result <output>{{ getResult() }}</output>
       </div>
-    </ng-container>
-    Result <output>{{ getResult() }}</output>
   </ng-template>
 
-  <ng-template #tmpSection>
-    <ng-container *ngFor="let input of sections; let j = index">
-      <p>
+  <div *ngIf="tmpInput; then tmpInput"></div>
+
+  <!--
+
+    <ng-template #tmpSection>
+    <div *ngFor="let input of sections; let j = index">
+      <div class="cmp-sections-container">
         <button type="button" (click)="addInput()">Input</button>
         <b> Section {{ j+1 }} </b>
         <button type="button" (click)="deleteSection(j)" [disabled]="sections.length <= 1">Delete</button>
-      </p>
-      <div *ngIf="tmpInput; then tmpInput"></div>
-    </ng-container>
+        <div *ngIf="tmpInput; then tmpInput"></div>
+      </div>
+    </div>
   </ng-template>
 
-    <ng-container>
+  <ng-template #tmpMain>
+    <div>
       <button type="button" (click)="addSection()">Section</button><br>
       <div *ngIf="tmpSection; then tmpSection"></div>
-    </ng-container>
+    </div>
+  </ng-template>
+
+  <div *ngIf="tmpMain; then tmpMain"></div>
+
+-->
 
 </body>
 </html>
