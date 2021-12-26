@@ -11,16 +11,39 @@ import { Component, OnInit} from '@angular/core';
 
 export class DynamicInputComponent implements OnInit {
 
-  inputs =[{value:0}];
-  sections = [{section:this.inputs}];
+  sections = [{ inputs:[{value:0,}] }];
 
   ngOnInit(): void {
     return;
   }
 
-  onChange(index:number,value:number): void {
-    this.inputs[index].value = value;
+  addInput(section:any): void{
+    section.inputs.push({value:0});
   }
+
+  addSection(): void{
+    this.sections.push({ inputs:[{value:0,}] });
+  }
+
+  onChange(section:any,index:number,value:number): void {
+    section.inputs[index].value = value;
+  }
+
+  deleteInput(section:any,index:number): void {
+    section.inputs.splice(index,1);
+  }
+
+  deleteSection(index:number): void{
+    this.sections.splice(index,1)
+  }
+
+  getResult(section:any): string{
+    let total = 0;
+    section.inputs.forEach((num:any) => total += num.value , 0);
+    return total.toString();
+  }
+
+ /*
 
   getResult(): string{
     let total = 0;
@@ -44,4 +67,7 @@ export class DynamicInputComponent implements OnInit {
   deleteSection(index:number): void{
     this.sections.splice(index,1)
   }
+
+*/
+
 }

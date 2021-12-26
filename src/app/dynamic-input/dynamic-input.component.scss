@@ -1,14 +1,79 @@
-.cmp-inputs-container{
+  body{
+    width: 430px;
+    margin: auto;
+  }
+
+  hr{
+    border: 2px solid;
+  }
+
+  .cmp-inputs-container{
+    row-gap: 5em;
+    padding-top: 0.5ch;
+    padding-bottom: 1ch;
+
+    &>b{
+      white-space: nowrap;
+    }
+
+    &>b::after{
+      content:'::';
+      font-weight: bold;
+      color: blue;
+    }
+}
+
+.inputResult{
   display: grid;
-  grid-template-columns: 0fr 0.25fr 0fr;
-  row-gap: 0.5em;
+  justify-content: center;
+  grid-template-columns: 1fr 1.5fr;
 
-  &>b{
+  &>label{
+    grid-template-columns: 1ch 1fr;
     white-space: nowrap;
-  }
+    display: grid;
+    justify-content: center;
 
-  &>b::after{
-    content:'::';
-    color: blue;
+    &>b{
+      align-self: center;
+      text-align: right;
+      font-size: 0.5cm;
+      font-family: monospace;
+      vertical-align: 0.65ch;
+    }
+
+    &>b::after{
+      content: '::';
+      margin-left: 0.5ch;
+      margin-right: 0.5ch;
+      font-weight: bold;
+      color: blue;
+    }
+
+    &>output{
+      padding-right: 2ch;
+      font-weight: bold;
+      text-decoration: underline;
+      text-decoration-style: double;
+    }
   }
+}
+
+.add-section-button,.add-input-button,.remove-section-button,.remove-input-button{
+  &>b{
+    font-size: 0.35cm;
+    font-family: monospace;
+    vertical-align: 0.65ch;
+  }
+}
+
+.remove-section-button{
+  float: right;
+}
+
+.sec-text{
+  font-family: monospace;
+  font-size: 0.5cm;
+  vertical-align: 0.65ch;
+  padding-left: 50px;
 }
