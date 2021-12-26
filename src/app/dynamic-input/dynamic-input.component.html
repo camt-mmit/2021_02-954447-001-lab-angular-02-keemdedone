@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+  <ng-template #tmpMain>
+    <button type="button" (click)="addSection()" class="add-section-button">
+      <i class="material-icons">
+        add
+      </i>
+      <b>Section</b>
+    </button>
+    <ng-container *ngFor="let section of sections; let r = index">
+      <hr>
+      <button type="button" (click)="addInput(section)" class="add-input-button">
+        <i class="material-icons">
+          add_circle
+        </i>
+        <b>Input</b>
+      </button>
+      <b class="sec-text"> Section {{ r+1 }} </b>
+      <button type="button" (click)="deleteSection(r)" [disabled]="sections.length <= 1" class="remove-section-button">
+        <i class="material-icons">
+          delete_forever
+        </i>
+        <b>Delete</b>
+      </button>
+      <div class="cmp-inputs-container">
+        <ng-container *ngFor="let input of section.inputs; let x = index" > <!-- section.inputs comefrom line 11  -->
+          <b class="cl-number">Number {{ x+1 }} </b>
+          <input
+            #elem
+            type="number"
+            [value]="input.value"
+            (change)="onChange(section,x,elem.valueAsNumber)"/>
+          <button type="button" (click)="deleteInput(section,x)" [disabled]="section.inputs.length <= 1" class="remove-input-button">
+            <i class="material-icons">
+              delete
+            </i>
+            <b>Delete</b>
+          </button>
+        </ng-container>
+      </div>
+      <div class="inputResult">
+        <label>
+          <b>Result</b>
+          <output class="cl-number">{{ getResult(section) }}</output>
+        </label>
+      </div>
+    </ng-container>
+  </ng-template>
+
+  <div *ngIf="tmpMain; then tmpMain"></div>
+
+</body>
+</html>
